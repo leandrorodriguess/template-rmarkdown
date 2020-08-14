@@ -1,3 +1,3 @@
 # MDC- Unicamp
-Template relatório em R e Markdown
+Template relatório em RMarkdown
 
