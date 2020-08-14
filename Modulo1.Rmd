@@ -1,0 +1,88 @@
+---
+title: "Trabalho INF-0612 - Análise de Dados "
+author: Daniel Rodrigues Rezende; Glauber Modolo Cabral;Leandro Rodrigues da Silva Souza; Luiz Antonio Falaguasta Barbosa 
+output:
+  html_document:
+    highlight: tango
+    includes:
+      after_body: psbfix.html
+---
+
+### Exercício 1
+Crie uma função em R para fazer a conversão entre unidades de temperatura (De Kelvin para Celcius). Forneça um exemplo de uso. 
+
+**Reposta do ex 1:**
+
+```{R}
+#função que transforma  Kelvin para Celcius
+converteCelsius <- function(temperatura)
+{
+   return((temperatura − 273.15)) 
+}
+print(converteCelsius(94))
+```
+
+
+\
+
+***
+
+\
+
+### Exercício 2
+Crie um loop que imprima os valores ímpares no intervalo de 1 a 100.
+
+**Reposta do ex 2:**
+```{R}
+
+#Impressão de números ímpares forma prodedural
+vetor <- c(1:100)
+for(num in vetor)
+{
+  if((num%%2)==1)
+  print(num)
+}
+
+# lista de numeros expresso via função  
+print(vetor[c((vetor %%2==1) %in% vetor )]) # somente que satisfazem a
+
+```
+
+\
+
+***
+
+\
+
+### Exercício 3
+Qual a diferença entre os operadores “&”, “&&”, “|” e “||”. Ilustre o uso destes operadores por meio de um programa exemplo.
+
+**Reposta do ex 3:**
+
+```{r}
+
+#Analisado elemento a elemento do vetor 
+x <- c(TRUE,TRUE,0,1)
+y <- c(FALSE,TRUE,FALSE,FALSE)
+x&y
+
+# as duas sentenças precisam ser verdadeiras
+6==6 & 7==8
+5>3 & 5>8
+
+#Analisado se existem uma condição dentre os elementos do vetor onde ambas sejam verdadeiras, sendo que qualquer numero diferente de 0 é considerado verdadeiro
+x1 <- c(1,0,0,1,0,0,2, -2, 0)
+y1 <- c(1,1,1,1,0,1,TRUE, TRUE, TRUE)
+
+x1&y1
+
+x1 <- c(TRUE,FALSE,FALSE,TRUE,FALSE,FALSE)
+y1 <- c(TRUE,TRUE,TRUE,TRUE,FALSE,TRUE)
+
+x1&y1
+
+# operação or elemento a elemento do vertor
+x|y
+
+
+```

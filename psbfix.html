@@ -1,0 +1,144 @@
+<style>
+/*
+ *			RMARKDOWN PRINT CUSTOMIZAÇÃO
+ *			  by: Leandro Rodrigues da Silva Souza
+ *					2020
+ *
+ */
+html, body {
+    height: 100%;
+}
+
+.main-container {
+	height: 100%;
+}
+
+div#header {
+	page-break-after: always;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.title::before{
+	content: "Mineração de dados Complexos";
+	position: absolute;
+	top: 0;
+	text-align: center;
+	padding: 0;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.title::after{
+	font-size: 26px;
+	content: "Campinas-SP\A" attr(data-date) "";
+	white-space: pre;
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	padding: 0;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+</style>
+<script>
+/*
+ *			RMARKDOWN PRINT CSSFIX
+ *			  by: Adriano Junior
+ *					2019
+ *
+ */
+if(!jQuery){
+	var el = document.createElement('script'); el.type = "text/javascript"; el.src = "http://code.jquery.com/jquery-latest.pack.js"; document.body.appendChild(el);
+}
+$(document).ready(function () {
+	for(j = 0; j < document.styleSheets.length; j++){
+		for(var i=document.styleSheets[j].rules.length -1; i >0; i--){
+		   if(document.styleSheets[j].rules[i].cssText.indexOf("@media print") !=-1 )
+		   {
+			  document.styleSheets[j].deleteRule(i);
+		   }
+		}
+	}
+
+	var css = '@media print{ body{ -webkit-print-color-adjust: exact !important; } div[id^="htmlwidget"]{ page-break-inside: avoid !important; } }code.sourceCode{white-space: pre-wrap !important;}',
+	head = document.head || document.getElementsByTagName('head')[0],
+	style = document.createElement('style');
+
+	head.appendChild(style);
+
+	style.type = 'text/css';
+	if (style.styleSheet){
+		// This is required for IE8 and below.
+		style.styleSheet.cssText = css;
+	} else {
+		style.appendChild(document.createTextNode(css));
+	}
+
+/*
+ *			RMARKDOWN PRINT CSSFIX
+ *			  by: Leandro Rodrigues da Silva Souza
+ *					2020
+ *
+ */
+  $(document).ready(function() {
+    $head = $('#header');
+    $head.prepend('<div class="knitr source"><img src="logo.png" width="120px" align="right"   ></div>')
+  });
+
+
+	var splitAuthors = function(){
+		var e = $("h4.author");
+		if(e == null || e == undefined){
+			return null;
+		}
+		var authors = e.text().split(';');
+		for(i = authors.length - 1; i >= 0; i--){
+			authors[i] = authors[i].trim();
+			if(authors[i] == ""){
+				authors.splice(i, 1);
+			}
+		}
+		return authors;
+	}
+
+	var renameAuthors = function(){
+		var e = $("h4.author");
+		if(e == null || e == undefined){
+			return null;
+		}
+		authors = splitAuthors();
+		e.html(authors.join("<br>"));
+	}
+
+	var setYear = function(){
+		var e = $("h1.title");
+		if(e == null || e == undefined){
+			return null;
+		}
+		e.attr("data-date", new Date().getFullYear());
+	}
+
+	renameAuthors();
+	setYear();
+});
+
+
+
+
+
+</script>
